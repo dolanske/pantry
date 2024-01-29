@@ -38,7 +38,7 @@ import errorFallback from './routes/errorFallback.html?raw'
 
 const routes = {
   '/': main,
-  '/users': '<span>User list...</span>',
+  '/about': '<span>About Us</span>',
   '/user/:id': {
     html: user,
     // In case loader throws, you can provide a fallback route to render instead
@@ -60,6 +60,9 @@ To explain it in the simplest terms, Pantry uses the routing mechanism of Crumbs
 
 Pantry also provides a reusable component called `RouterLink`, which is used to navigate between pages. It takes in two parameters, the first one is another component, the second is the path.
 ```ts
+import { createApp } from '@dolanske/pantry'
+import { El } from '@dolanske/cascade'
+
 const app = createApp({
   '/home': El.div([
     El.h1('HOME'),
@@ -71,12 +74,15 @@ const app = createApp({
     El.p('We are a community of {big number} and constantly growing!'),
     RouterLink('Go back', '/home'),
   ]),
-  '/person/:id': El.div().setup((instance, props) => {
-    // Render the returned JSON data in <pre>
-    instance.nest([
-      El.pre(JSON.stringify(props.data, null, 2)),
-    ])
-  }),
+  '/user/:id': {
+    template: El.div().setup((instance, props) => {
+    // If a route has a loader, the returned dataset will added to `props.data`
+      instance.nest([
+        El.pre(JSON.stringify(props.data, null, 2)),
+      ])
+    }),
+    fallback: El.p('Whoops, something went wrong :/')
+  }
 })
 
 app.run('#app')
