@@ -75,18 +75,18 @@ const app = createApp({
     RouterLink('Go back', '/home'),
   ]),
   '/user/:id': {
-    template: El.div().setup((instance, props) => {
+    component: El.div().setup((instance, props) => {
     // If a route has a loader, the returned dataset will added to `props.data`
       instance.nest([
         El.pre(JSON.stringify(props.data, null, 2)),
       ])
     }),
-    fallback: El.p('Whoops, something went wrong :/'),
     async loader({ id }: { id: number }) {
       return fetch(`https://swapi.dev/api/people/${id}`)
         .then(r => r.json())
         .then(d => d)
     },
+    fallback: El.p('Whoops, something went wrong :/'),
   }
 })
 
