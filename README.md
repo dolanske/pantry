@@ -1,6 +1,6 @@
-# pantry
+# PANTRY
 
-Completely homegrown framework, utilizing my library [Cascade](https://github.com/dolanske/cascade) for UI components and [Crumbs](https://github.com/dolanske/crumbs) for client side routing.
+Completely homegrown framework, utilizing my library [Cascade](https://github.com/dolanske/cascade) for UI components and [Crumbs](https://github.com/dolanske/crumbs) for client side routing. Oh the joy of creating things.
 
 ## [Cascade](https://github.com/dolanske/cascade)
 
@@ -54,7 +54,7 @@ const routes = {
 defineRouter(routes).run('#app')
 ```
 
-## Both together
+## Both together = Pantry
 
 To explain it in the simplest terms, Pantry uses the routing mechanism of Crumbs, but instead of rendering HTML files, it renders the UI components provided by Cascade. And that's it. There's nothing else to it!
 
@@ -72,7 +72,7 @@ const app = createApp({
     RouterLink('Go back', '/home'),
   ]),
   '/person/:id': El.div().setup((instance, props) => {
-    // Should contain the data
+    // Render the returned JSON data in <pre>
     instance.nest([
       El.pre(JSON.stringify(props.data, null, 2)),
     ])
