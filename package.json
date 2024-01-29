@@ -1,8 +1,35 @@
 {
-  "name": "basket",
+  "name": "@dolanske/pantry",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
+  "description": "Front-end framework combining the UI components of Cascade and routing of Crumbs. ",
+  "author": "dolanske",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dolanske/pantry.git"
+  },
+  "keywords": [
+    "javascript",
+    "typescript",
+    "SPA",
+    "framework",
+    "router",
+    "nuxt",
+    "nextjs"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/pantry.js"
+    }
+  },
+  "main": "./dist/pantry.js",
+  "module": "./dist/pantry.js",
+  "types": "./dist/pantry.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -16,6 +43,7 @@
     "@antfu/eslint-config": "^2.6.3",
     "eslint": "^8.56.0",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "vite": "^5.0.8",
+    "vite-plugin-dts": "^3.7.2"
   }
 }

@@ -4,7 +4,7 @@ import { Component } from '@dolanske/cascade'
 
 function noop() { }
 
-interface Route {
+export interface Route {
   component: Component
   loader: CrumbRoute['loader']
   title: CrumbRoute['title']
