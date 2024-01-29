@@ -1,6 +1,6 @@
 # PANTRY
 
-Completely homegrown framework, utilizing my library [Cascade](https://github.com/dolanske/cascade) for UI components and [Crumbs](https://github.com/dolanske/crumbs) for client side routing. Oh the joy of creating things.
+Completely homegrown framework, utilizing my own libraries [Cascade](https://github.com/dolanske/cascade) for UI components and [Crumbs](https://github.com/dolanske/crumbs) for client side routing. Oh the joy of creating things.
 
 ## [Cascade](https://github.com/dolanske/cascade)
 
