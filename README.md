@@ -60,8 +60,7 @@ To explain it in the simplest terms, Pantry uses the routing mechanism of Crumbs
 
 Pantry also provides a reusable component called `RouterLink`, which is used to navigate between pages. It takes in two parameters, the first one is another component, the second is the path.
 ```ts
-import { createApp } from '@dolanske/pantry'
-import { El } from '@dolanske/cascade'
+import { El, createApp } from '@dolanske/pantry'
 
 const app = createApp({
   '/home': El.div([

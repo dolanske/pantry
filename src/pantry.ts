@@ -31,8 +31,8 @@ export function createApp(routes: Router) {
       }
     }
     else {
-      const { loader, title, default: _default, fallback } = route
-      RouterViews[path] = route.component
+      const { loader, title, default: _default, fallback, component } = route
+      RouterViews[path] = component
       CrumbsRouter[path] = {
         loader,
         title,
