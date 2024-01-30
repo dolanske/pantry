@@ -57,25 +57,26 @@ export function createApp(routes: Router) {
   return {
     run: (selector: string) => {
       router.run(selector)
-
       // Watch for when new route is navigated into and then render Cascade app into its wrapper
       onResolveRelease = onRouteResolve((route) => {
-        const view = structuredClone(RouterViews[route.path])
-        // If route contained a loader, set the data as a prop
-        view.props({
-          $data: route.data,
-          $params: route.params,
-        })
+        if (prevView)
+          prevView.destroy()
 
-        if (view) {
-          if (prevView)
-            prevView.destroy()
+        const newView = RouterViews[route.path]
+        if (newView) {
+          const view = structuredClone(newView)
+          // If route contained a loader, set the data as a prop
+          view.props({
+            $data: route.data,
+            $params: route.params,
+          })
 
           view.mount('[router-boundary]')
           prevView = view
         }
       })
 
+      // TODO: add global fallback?
       onErrorRelease = onRouteError((route, error) => {
         if (!route) {
           console.warn('Attempted to navigate to a route that does not exist')
@@ -83,10 +84,12 @@ export function createApp(routes: Router) {
           return
         }
 
-        const fallback = structuredClone(RouteFallbacks[route.path])
-        if (fallback) {
-          if (prevFallback)
-            prevFallback.destroy()
+        if (prevFallback)
+          prevFallback.destroy()
+
+        const newFallback = RouteFallbacks[route.path]
+        if (newFallback) {
+          const fallback = structuredClone(newFallback)
 
           fallback.mount('route-boundary')
           prevFallback = fallback
