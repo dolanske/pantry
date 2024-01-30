@@ -75,9 +75,11 @@ const app = createApp({
   ]),
   '/user/:id': {
     component: El.div().setup((instance, props) => {
-    // If a route has a loader, the returned dataset will added to `props.data`
+      // Every route props object will contain two properties
+      // props.$data - if route has loader, the resolved dataset will be here
+      // props.$params - dynamic path parameters (eg.: /user/:id)
       instance.nest([
-        El.pre(JSON.stringify(props.data, null, 2)),
+        El.pre(JSON.stringify(props.$data, null, 2)),
       ])
     }),
     async loader({ id }: { id: number }) {

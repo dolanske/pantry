@@ -51,17 +51,29 @@ export function createApp(routes: Router) {
   let onResolveRelease = noop
   let onErrorRelease = noop
 
+  let prevView: Component | undefined
+  let prevFallback: Component | undefined
+
   return {
     run: (selector: string) => {
       router.run(selector)
 
-      // Watcv for when new route is navigated into and then render Cascade app into its wrapper
+      // Watch for when new route is navigated into and then render Cascade app into its wrapper
       onResolveRelease = onRouteResolve((route) => {
-        const view = RouterViews[route.path]
+        const view = structuredClone(RouterViews[route.path])
         // If route contained a loader, set the data as a prop
-        view.props({ data: route.data })
-        if (view)
+        view.props({
+          $data: route.data,
+          $params: route.params,
+        })
+
+        if (view) {
+          if (prevView)
+            prevView.destroy()
+
           view.mount('[router-boundary]')
+          prevView = view
+        }
       })
 
       onErrorRelease = onRouteError((route, error) => {
@@ -71,15 +83,24 @@ export function createApp(routes: Router) {
           return
         }
 
-        const fallback = RouteFallbacks[route.path]
-        if (fallback)
+        const fallback = structuredClone(RouteFallbacks[route.path])
+        if (fallback) {
+          if (prevFallback)
+            prevFallback.destroy()
+
           fallback.mount('route-boundary')
+          prevFallback = fallback
+        }
       })
     },
     stop: () => {
       router.stop()
       onResolveRelease()
       onErrorRelease()
+      if (prevView)
+        prevView.destroy()
+      if (prevFallback)
+        prevFallback.destroy()
     },
   }
 }
