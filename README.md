@@ -12,7 +12,7 @@ A simple example of a reusable piece of UI written in Cascade.
 import { ref } from '@vue-reactivity'
 import { El } from '@dolanske/cascade'
 
-const CounterComponent = El.button().setup(({ self, props }) => {
+const CounterComponent = $.button().setup(({ self, props }) => {
   const data = ref(props.startingCount as number)
 
   self.text(() => `Clicked ${data.value} times`)
@@ -60,34 +60,34 @@ To explain it in the simplest terms, Pantry uses the routing mechanism of Crumbs
 
 Pantry also provides a reusable component called `RouterLink`, which is used to navigate between pages. It takes in two parameters, the first one is another component, the second is the path.
 ```ts
-import { El, RouterLink, createApp } from '@dolanske/pantry'
+import { El as $, RouterLink, createApp } from '@dolanske/pantry'
 
 const app = createApp({
-  '/home': El.div([
-    El.h1('HOME'),
+  '/home': $.div([
+    $.h1('HOME'),
     RouterLink('About us', '/about'),
     RouterLink('Random person', `/person/${getRandomNumberInRange(1, 10)}`),
   ]),
-  '/about': El.div([
-    El.h1('About us'),
-    El.p('We are a community of {big number} and constantly growing!'),
+  '/about': $.div([
+    $.h1('About us'),
+    $.p('We are a community of {big number} and constantly growing!'),
     RouterLink('Go back', '/home'),
   ]),
   '/user/:id': {
-    component: El.div().setup((instance, props) => {
+    component: $.div().setup((ctx, props) => {
       // Every route props object will contain two properties
       // props.$data - if route has loader, the resolved dataset will be here
       // props.$params - dynamic path parameters (eg.: /user/:id)
-      instance.nest([
-        El.pre(JSON.stringify(props.$data, null, 2)),
+      ctx.nest([
+        $.pre(JSON.stringify(props.$data, null, 2)),
       ])
     }),
-    async loader({ id }: { id: number }) {
-      return fetch(`https://swapi.dev/api/people/${id}`)
+    async loader(params) {
+      return fetch(`https://swapi.dev/api/people/${params.id}`)
         .then(r => r.json())
         .then(d => d)
     },
-    fallback: El.p('Whoops, something went wrong :/'),
+    fallback: $.p('Whoops, something went wrong :/'),
   }
 })
 
