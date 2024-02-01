@@ -14,7 +14,7 @@ export {
   onNavigation,
   navigate,
   // Cascade
-  El,
+  El as $,
   getInstance,
 
   // Types

@@ -1,8 +1,8 @@
-import type { Component } from '@dolanske/cascade'
+import type { Children } from '@dolanske/cascade'
 import { El } from '@dolanske/cascade'
 import { navigate } from '@dolanske/crumbs'
 
-export function RouterLink(text: Component, href: string) {
+export function RouterLink(href: string, text: Children) {
   return El.a().setup((component) => {
     component.attr('href', href)
     component.nest(text)

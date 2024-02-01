@@ -1,6 +1,7 @@
 import type { Route as CrumbRoute, Router as CrumbRouter } from '@dolanske/crumbs'
 import { defineRouter, onRouteError, onRouteResolve } from '@dolanske/crumbs'
 import { Component } from '@dolanske/cascade'
+import { nextTick } from './util'
 
 function noop() { }
 
@@ -56,7 +57,6 @@ export function createApp(routes: Router) {
 
   return {
     run: (selector: string) => {
-      router.run(selector)
       // Watch for when new route is navigated into and then render Cascade app into its wrapper
       onResolveRelease = onRouteResolve((route) => {
         if (prevView)
@@ -64,14 +64,14 @@ export function createApp(routes: Router) {
 
         const newView = RouterViews[route.path]
         if (newView) {
-          const view = structuredClone(newView)
+          const view = newView.clone()
           // If route contained a loader, set the data as a prop
           view.props({
             $data: route.data,
             $params: route.params,
           })
 
-          view.mount('[router-boundary]')
+          view.mount('[route-boundary]')
           prevView = view
         }
       })
@@ -89,12 +89,14 @@ export function createApp(routes: Router) {
 
         const newFallback = RouteFallbacks[route.path]
         if (newFallback) {
-          const fallback = structuredClone(newFallback)
+          const fallback = newFallback.clone()
 
           fallback.mount('route-boundary')
           prevFallback = fallback
         }
       })
+
+      router.run(selector)
     },
     stop: () => {
       router.stop()
