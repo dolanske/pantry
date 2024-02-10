@@ -8,10 +8,10 @@ export declare function createApp(routes: Router): {
 
 export declare interface Route {
     component: Component;
-    loader: Route_2['loader'];
-    title: Route_2['title'];
-    default: Route_2['default'];
-    fallback: Component;
+    loader?: Route_2['loader'];
+    title?: Route_2['title'];
+    default?: Route_2['default'];
+    fallback?: Component;
 }
 
 declare type Router = Record<string, Route | Component>;

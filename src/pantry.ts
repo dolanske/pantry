@@ -1,16 +1,15 @@
 import type { Route as CrumbRoute, Router as CrumbRouter } from '@dolanske/crumbs'
 import { defineRouter, onRouteError, onRouteResolve } from '@dolanske/crumbs'
 import { Component } from '@dolanske/cascade'
-import { nextTick } from './util'
 
 function noop() { }
 
 export interface Route {
   component: Component
-  loader: CrumbRoute['loader']
-  title: CrumbRoute['title']
-  default: CrumbRoute['default']
-  fallback: Component
+  loader?: CrumbRoute['loader']
+  title?: CrumbRoute['title']
+  default?: CrumbRoute['default']
+  fallback?: Component
 }
 
 type Router = Record<string, Route | Component>
