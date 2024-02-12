@@ -1,8 +1,5 @@
 import { $, RouterLink, createApp } from '.'
 
-// TODO
-// When defining routes, wrap them in a function
-
 const app = createApp({
   '/': $.div(
     RouterLink('/people/3', 'Henlo'),

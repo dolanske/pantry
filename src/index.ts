@@ -5,10 +5,6 @@ import { RouterLink } from './link'
 import type { Route } from './pantry'
 import { createApp } from './pantry'
 
-// type $ = typeof El
-
-const $: typeof El = El
-
 export {
   RouterLink,
   createApp,
@@ -18,11 +14,10 @@ export {
   onNavigation,
   navigate,
   // Cascade
-  $,
+  El as $,
   getInstance,
 
   // Types
   type Route,
   type Component,
-  // type El,
 }
