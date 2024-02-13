@@ -6,6 +6,13 @@ export declare function createApp(routes: Router): {
     stop: () => void;
 };
 
+export declare interface LoaderProps<D> {
+    $params: Record<string, string>;
+    $data: D;
+}
+
+export declare type PropType<LoaderData, ComponentProps extends object = object> = LoaderProps<LoaderData> & ComponentProps;
+
 export declare interface Route {
     component: Component;
     loader?: Route_2['loader'];
@@ -16,7 +23,7 @@ export declare interface Route {
 
 declare type Router = Record<string, Route | Component>;
 
-// @ts-expect-error stfu
+// @ts-expect-error
 declare const $ = El
 
 export { $ }

@@ -59,6 +59,14 @@ function $(u) {
     stop: () => {
       f.stop(), p(), d(), l && l.destroy(), i && i.destroy();
     }
+    // global: {
+    //   loaderFallback(route: Component) {
+    //     globalLoaderFallback = route
+    //   },
+    //   errorFallback(route: Component) {
+    //     globalErrorFallback = route
+    //   },
+    // },
   };
 }
 export {

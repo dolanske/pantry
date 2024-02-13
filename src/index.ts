@@ -2,7 +2,7 @@ import { navigate, onNavigation, onRouteError, onRouteResolve } from '@dolanske/
 import type { Component, El } from '@dolanske/cascade'
 import { El as $, getInstance } from '@dolanske/cascade'
 import { RouterLink } from './link'
-import type { Route } from './pantry'
+import type { LoaderProps, PropType, Route } from './pantry'
 import { createApp } from './pantry'
 
 export {
@@ -20,4 +20,6 @@ export {
   type El,
   type Route,
   type Component,
+  type PropType,
+  type LoaderProps,
 }

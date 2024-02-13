@@ -2,6 +2,15 @@ import type { Route as CrumbRoute, Router as CrumbRouter } from '@dolanske/crumb
 import { defineRouter, onRouteError, onRouteResolve } from '@dolanske/crumbs'
 import { Component } from '@dolanske/cascade'
 
+/**
+ * TODO
+ *
+ * [] Add loaderFallback to Route interface
+ * [] Rename fallback in Route interface to errorFallback
+ * [] Add globalError fallback
+ *  - will render on any route error, unless the route has its own errorFallback
+ */
+
 function noop() { }
 
 export interface Route {
@@ -11,6 +20,13 @@ export interface Route {
   default?: CrumbRoute['default']
   fallback?: Component
 }
+
+export interface LoaderProps<D> {
+  $params: Record<string, string>
+  $data: D
+}
+
+export type PropType<LoaderData, ComponentProps extends object = object> = LoaderProps<LoaderData> & ComponentProps
 
 type Router = Record<string, Route | Component>
 
@@ -75,7 +91,6 @@ export function createApp(routes: Router) {
         }
       })
 
-      // TODO: add global fallback?
       onErrorRelease = onRouteError((route, error) => {
         if (!route) {
           console.warn('Attempted to navigate to a route that does not exist')
@@ -106,5 +121,13 @@ export function createApp(routes: Router) {
       if (prevFallback)
         prevFallback.destroy()
     },
+    // global: {
+    //   loaderFallback(route: Component) {
+    //     globalLoaderFallback = route
+    //   },
+    //   errorFallback(route: Component) {
+    //     globalErrorFallback = route
+    //   },
+    // },
   }
 }
