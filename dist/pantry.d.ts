@@ -1,4 +1,4 @@
-import { Component, El } from '@dolanske/cascade';
+import { Component } from '@dolanske/cascade';
 import type { Route as Route_2 } from '@dolanske/crumbs';
 
 export declare function createApp(routes: Router): {
@@ -16,6 +16,4 @@ export declare interface Route {
 
 declare type Router = Record<string, Route | Component>;
 
-declare type $ = typeof El
-
-export { $ }
+export { }

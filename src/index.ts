@@ -14,9 +14,8 @@ export {
   onNavigation,
   navigate,
   // Cascade
-  $,
   getInstance,
-
+  $,
   // Types
   type Route,
   type Component,
