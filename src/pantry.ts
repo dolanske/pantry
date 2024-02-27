@@ -7,7 +7,8 @@ import { Component } from '@dolanske/cascade'
  *
  * [] Add loaderFallback to Route interface
  * [] Rename fallback in Route interface to errorFallback
- * [] Add globalError fallback
+ * REVIEW
+ * [x] Add globalError fallback
  *  - will render on any route error, unless the route has its own errorFallback
  */
 
@@ -69,6 +70,7 @@ export function createApp(routes: Router) {
 
   let prevView: Component | undefined
   let prevFallback: Component | undefined
+  let globalErrorFallback: Component | undefined
 
   return {
     run: (selector: string) => {
@@ -92,16 +94,20 @@ export function createApp(routes: Router) {
       })
 
       onErrorRelease = onRouteError((route, error) => {
-        if (!route) {
-          console.warn('Attempted to navigate to a route that does not exist')
-          console.error(error)
-          return
-        }
+        let newFallback: Component | undefined
 
         if (prevFallback)
           prevFallback.destroy()
 
-        const newFallback = RouteFallbacks[route.path]
+        if (!route) {
+          console.warn('Attempted to navigate to a route that does not exist')
+          console.error(error)
+          newFallback = globalErrorFallback
+        }
+        else {
+          newFallback = RouteFallbacks[route.path]
+        }
+
         if (newFallback) {
           const fallback = newFallback.clone()
 
@@ -121,13 +127,8 @@ export function createApp(routes: Router) {
       if (prevFallback)
         prevFallback.destroy()
     },
-    // global: {
-    //   loaderFallback(route: Component) {
-    //     globalLoaderFallback = route
-    //   },
-    //   errorFallback(route: Component) {
-    //     globalErrorFallback = route
-    //   },
-    // },
+    errorFallback: (component: Component) => {
+      globalErrorFallback = component
+    },
   }
 }

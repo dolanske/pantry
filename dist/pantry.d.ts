@@ -4,6 +4,7 @@ import type { Route as Route_2 } from '@dolanske/crumbs';
 export declare function createApp(routes: Router): {
     run: (selector: string) => void;
     stop: () => void;
+    errorFallback: (component: Component) => void;
 };
 
 export declare interface LoaderProps<D> {
@@ -23,7 +24,8 @@ export declare interface Route {
 
 declare type Router = Record<string, Route | Component>;
 
+
 // @ts-expect-error
 declare const $ = El
-
 export { $ }
+
