@@ -76,8 +76,10 @@ export function createApp(routes: Router) {
     run: (selector: string) => {
       // Watch for when new route is navigated into and then render Cascade app into its wrapper
       onResolveRelease = onRouteResolve((route) => {
-        if (prevView)
+        if (prevView) {
+          prevView.el.replaceChildren()
           prevView.destroy()
+        }
 
         const newView = RouterViews[route.path]
         if (newView) {
@@ -96,8 +98,10 @@ export function createApp(routes: Router) {
       onErrorRelease = onRouteError((route, error) => {
         let newFallback: Component | undefined
 
-        if (prevFallback)
+        if (prevFallback) {
+          prevFallback.el.replaceChildren()
           prevFallback.destroy()
+        }
 
         if (!route) {
           console.warn('Attempted to navigate to a route that does not exist')

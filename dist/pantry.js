@@ -1,58 +1,58 @@
-import { navigate as w, defineRouter as y, onRouteResolve as g, onRouteError as E } from "@dolanske/crumbs";
+import { navigate as h, defineRouter as w, onRouteResolve as y, onRouteError as g } from "@dolanske/crumbs";
 import { navigate as D, onNavigation as I, onRouteError as L, onRouteResolve as N } from "@dolanske/crumbs";
-import { El as h, Component as F } from "@dolanske/cascade";
+import { El as E, Component as F } from "@dolanske/cascade";
 import { El as _, getInstance as q, reusable as z } from "@dolanske/cascade";
-function $(u, n) {
-  return h.a().setup((a) => {
-    a.attr("href", u), a.nest(n), a.click((l) => {
-      l.preventDefault(), w(u);
+function V(c, s) {
+  return E.a().setup((a) => {
+    a.attr("href", c), a.nest(s), a.click((i) => {
+      i.preventDefault(), h(c);
     });
   });
 }
 function m() {
 }
-function A(u) {
-  const n = {}, a = {}, l = {};
-  for (const [o, e] of Object.entries(u)) {
+function $(c) {
+  const s = {}, a = {}, i = {};
+  for (const [o, e] of Object.entries(c)) {
     const r = "<div route-boundary>";
     if (e instanceof F)
-      n[o] = e, l[o] = {
+      s[o] = e, i[o] = {
         html: r
       };
     else {
-      const { loader: t, title: c, default: v, fallback: R, component: k } = e;
-      n[o] = k, l[o] = {
+      const { loader: t, title: u, default: v, fallback: R, component: k } = e;
+      s[o] = k, i[o] = {
         loader: t,
-        title: c,
+        title: u,
         default: v,
         html: r
       }, R && (a[o] = R);
     }
   }
-  const f = y(l);
-  let p = m, d = m, s, i, b;
+  const f = w(i);
+  let p = m, d = m, n, l, b;
   return {
     run: (o) => {
-      p = g((e) => {
-        s && s.destroy();
-        const r = n[e.path];
+      p = y((e) => {
+        n && (n.el.replaceChildren(), n.destroy());
+        const r = s[e.path];
         if (r) {
           const t = r.clone();
           t.props({
             $data: e.data,
             $params: e.params
-          }), t.mount("[route-boundary]"), s = t;
+          }), t.mount("[route-boundary]"), n = t;
         }
-      }), d = E((e, r) => {
+      }), d = g((e, r) => {
         let t;
-        if (i && i.destroy(), e ? t = a[e.path] : (console.warn("Attempted to navigate to a route that does not exist"), console.error(r), t = b), t) {
-          const c = t.clone();
-          c.mount("route-boundary"), i = c;
+        if (l && (l.el.replaceChildren(), l.destroy()), e ? t = a[e.path] : (console.warn("Attempted to navigate to a route that does not exist"), console.error(r), t = b), t) {
+          const u = t.clone();
+          u.mount("route-boundary"), l = u;
         }
       }), f.run(o);
     },
     stop: () => {
-      f.stop(), p(), d(), s && s.destroy(), i && i.destroy();
+      f.stop(), p(), d(), n && n.destroy(), l && l.destroy();
     },
     errorFallback: (o) => {
       b = o;
@@ -61,8 +61,8 @@ function A(u) {
 }
 export {
   _ as $,
-  $ as RouterLink,
-  A as createApp,
+  V as RouterLink,
+  $ as createApp,
   q as getInstance,
   D as navigate,
   I as onNavigation,
