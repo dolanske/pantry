@@ -10,9 +10,9 @@ export default defineConfig({
       formats: ['es'],
       fileName: 'pantry',
     },
-    rollupOptions: {
-      external: ['@dolanske/crumbs', '@dolanske/cascade'],
-    },
+    // rollupOptions: {
+    // external: ['@dolanske/crumbs', '@dolanske/cascade'],
+    // },
     sourcemap: true,
   },
   plugins: [dts({
