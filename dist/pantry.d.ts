@@ -1,6 +1,10 @@
 import { Component } from '@dolanske/cascade';
 import type { Route as Route_2 } from '@dolanske/crumbs';
 
+import { El } from '@dolanske/cascade';
+declare const $ = El
+declare const reusable = reusable
+
 export declare function createApp(routes: Router): {
     run: (selector: string) => void;
     stop: () => void;
@@ -24,6 +28,4 @@ export declare interface Route {
 
 declare type Router = Record<string, Route | Component>;
 
-// @ts-expect-error
-declare const $ = El
-export { $ }
+export { $, reusable }
