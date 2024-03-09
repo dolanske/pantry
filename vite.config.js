@@ -16,7 +16,7 @@ export default defineConfig({
     sourcemap: true,
   },
   plugins: [dts({
-    rollupTypes: true,
-    insertTypesEntry: true,
+    // rollupTypes: true,
+    // insertTypesEntry: true,
   })],
 })
