@@ -1,7 +1,7 @@
 {
   "name": "@dolanske/pantry",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Front-end framework combining the UI components of Cascade and routing of Crumbs. ",
   "author": "dolanske",
@@ -21,12 +21,12 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/pantry.js"
+      "import": "./dist/pantry"
     }
   },
-  "main": "./dist/pantry.js",
-  "module": "./dist/pantry.js",
-  "types": "./dist/pantry.d.ts",
+  "main": "./dist/pantry",
+  "module": "./dist/pantry",
+  "types": "./dist/index",
   "files": [
     "dist"
   ],
@@ -42,7 +42,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^2.8.0",
     "eslint": "^8.57.0",
-    "typescript": "^5.3.3",
+    "typescript": "^5.4.2",
     "vite": "^5.1.5",
     "vite-plugin-dts": "^3.7.3"
   }

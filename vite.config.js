@@ -8,7 +8,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'pantry',
       formats: ['es'],
-      fileName: 'pantry',
+      fileName: 'index',
     },
     rollupOptions: {
       external: ['@dolanske/crumbs', '@dolanske/cascade'],
@@ -16,7 +16,6 @@ export default defineConfig({
     sourcemap: true,
   },
   plugins: [dts({
-    // rollupTypes: true,
-    // insertTypesEntry: true,
+    rollupTypes: true,
   })],
 })

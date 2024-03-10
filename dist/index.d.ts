@@ -1,5 +1,23 @@
-import { navigate, onNavigation, onRouteError, onRouteResolve } from '@dolanske/crumbs';
-import { El as $, getInstance, reusable } from '@dolanske/cascade';
-import { RouterLink } from './link';
-import { createApp } from './pantry';
-export { RouterLink, createApp, onRouteError, onRouteResolve, onNavigation, navigate, reusable, $, getInstance, };
+import { Children } from '@dolanske/cascade';
+import { Component } from '@dolanske/cascade';
+import type { Route as Route_2 } from '@dolanske/crumbs';
+
+export declare function createApp(routes: Router): {
+    run: (selector: string) => void;
+    stop: () => void;
+    errorFallback: (component: Component) => void;
+};
+
+declare interface Route {
+    component: Component;
+    loader?: Route_2['loader'];
+    title?: Route_2['title'];
+    default?: Route_2['default'];
+    fallback?: Component;
+}
+
+declare type Router = Record<string, Route | Component>;
+
+export declare function RouterLink(href: string, text: Children): Component;
+
+export { }

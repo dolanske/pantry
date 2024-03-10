@@ -1,4 +1,5 @@
-import { $, RouterLink, createApp } from '.'
+import { $ } from '@dolanske/cascade'
+import { RouterLink, createApp } from '.'
 
 const app = createApp({
   '/': $.div(

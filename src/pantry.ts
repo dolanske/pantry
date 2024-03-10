@@ -7,9 +7,6 @@ import { Component } from '@dolanske/cascade'
  *
  * [] Add loaderFallback to Route interface
  * [] Rename fallback in Route interface to errorFallback
- * REVIEW
- * [x] Add globalError fallback
- *  - will render on any route error, unless the route has its own errorFallback
  */
 
 function noop() { }
