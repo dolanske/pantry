@@ -1,7 +1,7 @@
 {
   "name": "@dolanske/pantry",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "Front-end framework combining the UI components of Cascade and routing of Crumbs. ",
   "author": "dolanske",

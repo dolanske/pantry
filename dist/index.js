@@ -1,7 +1,7 @@
-import { $ as h, Component as w } from "@dolanske/cascade";
+import { a as h, Component as w } from "@dolanske/cascade";
 import { navigate as y, defineRouter as F, onRouteResolve as C, onRouteError as g } from "@dolanske/crumbs";
-function $(i, s) {
-  return h.a().setup((n) => {
+function A(i, s) {
+  return h().setup((n) => {
     n.attr("href", i), n.nest(s), n.click((c) => {
       c.preventDefault(), y(i);
     });
@@ -9,7 +9,7 @@ function $(i, s) {
 }
 function R() {
 }
-function A(i) {
+function $(i) {
   const s = {}, n = {}, c = {};
   for (const [o, e] of Object.entries(i)) {
     const r = "<div route-boundary>";
@@ -58,7 +58,7 @@ function A(i) {
   };
 }
 export {
-  $ as RouterLink,
-  A as createApp
+  A as RouterLink,
+  $ as createApp
 };
 //# sourceMappingURL=index.js.map

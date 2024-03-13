@@ -1,15 +1,15 @@
-import { $ } from '@dolanske/cascade'
+import { div, pre, span } from '@dolanske/cascade'
 import { RouterLink, createApp } from '.'
 
 const app = createApp({
-  '/': $.div(
+  '/': div(
     RouterLink('/people/3', 'Henlo'),
   ),
   '/people/:id': {
-    component: $.div().setup((ctx, props) => {
+    component: div().setup((ctx, props) => {
       ctx.nest([
-        $.span(`Id ${props.$params.id}`),
-        $.pre(JSON.stringify(props.$data, null, 2)),
+        span(`Id ${props.$params.id}`),
+        pre(JSON.stringify(props.$data, null, 2)),
         RouterLink('/', 'back'),
       ])
     }),
