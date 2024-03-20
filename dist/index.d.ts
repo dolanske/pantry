@@ -1,5 +1,6 @@
 import { Children } from '@dolanske/cascade';
 import { Component } from '@dolanske/cascade';
+import type { NavigateOptions } from '@dolanske/crumbs';
 import type { Route as Route_2 } from '@dolanske/crumbs';
 
 export declare function createApp(routes: Router): {
@@ -8,7 +9,7 @@ export declare function createApp(routes: Router): {
     errorFallback: (component: Component) => void;
 };
 
-export declare function Link(href: string, text: Children, props?: Record<string, string | number | boolean>): Component;
+export declare function Link(href: string, text: Children, options?: NavigateOptions): Component;
 
 declare interface Route {
     component: Component;

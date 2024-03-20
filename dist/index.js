@@ -1,9 +1,9 @@
 import { a as h, Component as w } from "@dolanske/cascade";
 import { navigate as y, defineRouter as F, onRouteResolve as C, onRouteError as g } from "@dolanske/crumbs";
-function A(c, s, i) {
+function A(c, s, i = {}) {
   return h().setup((r) => {
     r.attr("href", c), r.nest(s), r.click((u) => {
-      u.preventDefault(), y(c, { props: i });
+      u.preventDefault(), y(c, i);
     });
   });
 }
