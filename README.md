@@ -58,20 +58,20 @@ defineRouter(routes).run('#app')
 
 To explain it in the simplest terms, Pantry uses the routing mechanism of Crumbs, but instead of rendering HTML files, it renders the UI components provided by Cascade. And that's it. There's nothing else to it!
 
-Pantry also provides a reusable component called `RouterLink`, which is used to navigate between pages. It takes in two parameters, the first one is another component, the second is the path.
+Pantry also provides a reusable component called `Link`, which is used to navigate between pages. It takes in two parameters, the first one is another component, the second is the path.
 ```ts
-import { RouterLink, createApp, div, h1, p, pre } from '@dolanske/pantry'
+import { Link, createApp, div, h1, p, pre } from '@dolanske/pantry'
 
 const app = createApp({
   '/home': div([
     h1('HOME'),
-    RouterLink('About us', '/about'),
-    RouterLink('Random person', `/person/${getRandomNumberInRange(1, 10)}`),
+    Link('About us', '/about'),
+    Link('Random person', `/person/${getRandomNumberInRange(1, 10)}`),
   ]),
   '/about': div([
     h1('About us'),
     p('We are a community of {big number} and constantly growing!'),
-    RouterLink('Go back', '/home'),
+    Link('Go back', '/home'),
   ]),
   '/user/:id': {
     component: div().setup((ctx, props) => {

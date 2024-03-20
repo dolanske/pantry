@@ -1,7 +1,7 @@
-import { RouterLink } from './link'
+import { Link } from './link'
 import { createApp } from './pantry'
 
 export {
-  RouterLink,
+  Link,
   createApp,
 }

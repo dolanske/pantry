@@ -8,6 +8,8 @@ export declare function createApp(routes: Router): {
     errorFallback: (component: Component) => void;
 };
 
+export declare function Link(href: string, text: Children, props?: Record<string, string | number | boolean>): Component;
+
 declare interface Route {
     component: Component;
     loader?: Route_2['loader'];
@@ -17,7 +19,5 @@ declare interface Route {
 }
 
 declare type Router = Record<string, Route | Component>;
-
-export declare function RouterLink(href: string, text: Children): Component;
 
 export { }
