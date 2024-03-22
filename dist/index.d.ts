@@ -9,7 +9,7 @@ export declare function createApp(routes: Router): {
     errorFallback: (component: Component) => void;
 };
 
-export declare function Link(href: string, text: Children, options?: NavigateOptions): Component;
+export declare function Link(href: string, children: Children, options?: NavigateOptions): Component;
 
 declare interface Route {
     component: Component;

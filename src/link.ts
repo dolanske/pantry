@@ -3,10 +3,9 @@ import { a } from '@dolanske/cascade'
 import type { NavigateOptions } from '@dolanske/crumbs'
 import { navigate } from '@dolanske/crumbs'
 
-export function Link(href: string, text: Children, options: NavigateOptions = {}) {
-  return a().setup((ctx) => {
+export function Link(href: string, children: Children, options?: NavigateOptions) {
+  return a(children).setup((ctx) => {
     ctx.attr('href', href)
-    ctx.nest(text)
     ctx.click((event) => {
       event.preventDefault()
       navigate(href, options)
