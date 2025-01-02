@@ -3,7 +3,7 @@ import { a } from '@dolanske/cascade'
 import type { NavigateOptions } from '@dolanske/crumbs'
 import { navigate } from '@dolanske/crumbs'
 
-export function Link(href: string, children: Children, options?: NavigateOptions) {
+export function Link(href: string, children: Children<object>, options?: NavigateOptions) {
   return a(children).setup((ctx) => {
     ctx.attr('href', href)
     ctx.click((event) => {
