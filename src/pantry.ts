@@ -11,12 +11,16 @@ import { Component } from '@dolanske/cascade'
 
 function noop() { }
 
+export type PropType<LoaderData, ComponentProps extends object = object> = LoaderProps<LoaderData> & ComponentProps
+
+type BaseRouteProps = PropType<unknown, object>
+
 export interface Route {
-  component: Component
+  component: Component<BaseRouteProps>
   loader?: CrumbRoute['loader']
   title?: CrumbRoute['title']
   default?: CrumbRoute['default']
-  fallback?: Component
+  fallback?: Component<BaseRouteProps>
 }
 
 export interface LoaderProps<D> {
@@ -24,13 +28,11 @@ export interface LoaderProps<D> {
   $data: D
 }
 
-export type PropType<LoaderData, ComponentProps extends object = object> = LoaderProps<LoaderData> & ComponentProps
-
-type Router = Record<string, Route | Component>
+type Router = Record<string, Route | Component<BaseRouteProps>>
 
 export function createApp(routes: Router) {
-  const RouterViews: Record<string, Component> = {}
-  const RouteFallbacks: Record<string, Component> = {}
+  const RouterViews: Record<string, Component<BaseRouteProps>> = {}
+  const RouteFallbacks: Record<string, Component<BaseRouteProps>> = {}
   const CrumbsRouter: CrumbRouter = {}
 
   // Serialize base application routes into what crumbs can consume
@@ -65,9 +67,9 @@ export function createApp(routes: Router) {
   let onResolveRelease = noop
   let onErrorRelease = noop
 
-  let prevView: Component | undefined
-  let prevFallback: Component | undefined
-  let globalErrorFallback: Component | undefined
+  let prevView: Component<BaseRouteProps> | undefined
+  let prevFallback: Component<BaseRouteProps> | undefined
+  let globalErrorFallback: Component<BaseRouteProps> | undefined
 
   return {
     run: (selector: string) => {
@@ -93,7 +95,7 @@ export function createApp(routes: Router) {
       })
 
       onErrorRelease = onRouteError((route, error) => {
-        let newFallback: Component | undefined
+        let newFallback: Component<BaseRouteProps> | undefined
 
         if (prevFallback) {
           prevFallback.el.replaceChildren()
@@ -128,7 +130,7 @@ export function createApp(routes: Router) {
       if (prevFallback)
         prevFallback.destroy()
     },
-    errorFallback: (component: Component) => {
+    errorFallback: (component: Component<BaseRouteProps>) => {
       globalErrorFallback = component
     },
   }

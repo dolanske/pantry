@@ -37,8 +37,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@dolanske/cascade": "github:dolanske/cascade",
-    "@dolanske/crumbs": "github:dolanske/crumbs"
+    "@dolanske/cascade": "^2.4.3",
+    "@dolanske/crumbs": "^1.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.8.0",
