@@ -13,14 +13,14 @@ function noop() { }
 
 export type PropType<LoaderData, ComponentProps extends object = object> = LoaderProps<LoaderData> & ComponentProps
 
-type BaseRouteProps = PropType<unknown, object>
+type BaseRouteProps = PropType<object, object> | object
 
 export interface Route {
-  component: Component<BaseRouteProps>
+  component: Component<any>
   loader?: CrumbRoute['loader']
   title?: CrumbRoute['title']
   default?: CrumbRoute['default']
-  fallback?: Component<BaseRouteProps>
+  fallback?: Component<any>
 }
 
 export interface LoaderProps<D> {
