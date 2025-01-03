@@ -1,7 +1,7 @@
 {
   "name": "@dolanske/pantry",
   "type": "module",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "private": false,
   "description": "Front-end framework combining the UI components of Cascade and routing of Crumbs. ",
   "author": "dolanske",
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@dolanske/cascade": "^2.4.4",
-    "@dolanske/crumbs": "^1.1.0"
+    "@dolanske/crumbs": "^1.1.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.12.1",
